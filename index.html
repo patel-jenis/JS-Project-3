@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/bootsrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body class="p-5">
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-xl-5 col-lg-7 col-md-9 col-12">
+            <div class="outer-body py-md-4 py-3 px-md-5 px-4">
+                <div class="mt-4">
+                    <label for="inputval" class="label-val">Enter Value For Box :</label>
+                    <input type="number" id="inputval" class="form-control mt-2">
+                    <button class="btn btn-dark mt-3" type="submit" id="submitbtn">Submit</button>
+                </div>
+                <div>
+                    <div id="inputboxes" class="mt-5"></div>
+                    <div class="d-flex flex-wrap gap-3 mt-4">
+                        <button id="random" class="btn btn-dark">Random</button>
+                        <button id="max" class="btn btn-dark">Max</button>
+                        <button id="min" class="btn btn-dark">Min</button>
+                        <button id="sum" class="btn btn-dark">Sum</button>
+                        <button id="search" class="btn btn-dark">Search</button>
+                        <button id="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                    <h3 id="ans" class="mt-4 text-center"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            let inputboxes = document.getElementById("inputboxes");
+            let h2 = document.getElementById("ans");
+            let n = 0;
+
+            $("#submitbtn").on("click", function () {
+                inputboxes.innerHTML = "";
+                n = parseInt(document.getElementById("inputval").value);
+
+                for (let i = 1; i <= n; i++) {
+                    inputboxes.innerHTML += `<input type="number" id="num${i}" class="form-control mt-2">`;
+                }
+            })
+
+            $("#max").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                let max = -Infinity;
+                let maxid = null;
+
+                for (let i = 1; i <= n; i++) {
+                    if (document.getElementById(`num${i}`).value === "") {
+                        h2.innerHTML = "Please Enter All input Values....";
+                        return;
+                    }
+                }
+
+                for (let i = 1; i <= n; i++) {
+                    let val = Number(document.getElementById(`num${i}`).value);
+                    if (val > max) {
+                        max = val;
+                        maxid = `#num${i}`;
+                    }
+                }
+
+                if (max === -Infinity) {
+                    h2.innerHTML = "Please Enter Values....";
+                    return;
+                }
+
+                $(maxid).addClass("highlight");
+                h2.innerHTML = `Maximum Element is : ${max}`;
+            })
+
+            $("#min").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                let min = Infinity;
+                let minid = null;
+
+                for (let i = 1; i <= n; i++) {
+                    if (document.getElementById(`num${i}`).value === "") {
+                        h2.innerHTML = "Please Enter All input Values....";
+                        return;
+                    }
+                }
+
+                for (let i = 1; i <= n; i++) {
+                    let val = Number(document.getElementById(`num${i}`).value);
+                    if (val < min) {
+                        min = val;
+                        minid = `#num${i}`;
+                    }
+                }
+
+                if (min === Infinity) {
+                    h2.innerHTML = "Please Enter Values....";
+                    return;
+                }
+
+                $(minid).addClass("highlight");
+                h2.innerHTML = `Minimum Element is : ${min}`;
+            })
+
+            $("#random").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                for (let i = 1; i <= n; i++) {
+                    document.getElementById(`num${i}`).value = parseInt(Math.random() * 100);
+                }
+            })
+
+            $("#sum").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                for (let i = 1; i <= n; i++) {
+                    if (document.getElementById(`num${i}`).value === "") {
+                        h2.innerHTML = "Please Enter All input Values....";
+                        return;
+                    }
+                }
+
+                let sum = 0;
+                for (let i = 1; i <= n; i++) {
+                    sum += Number(document.getElementById(`num${i}`).value);
+                }
+
+                if (sum === 0) {
+                    h2.innerHTML = "Please Enter Values....";
+                    return;
+                }
+
+                h2.innerHTML = `Sum is : ${sum}`;
+            })
+
+            $("#reset").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                for (let i = 1; i <= n; i++) {
+                    document.getElementById(`num${i}`).value = "";
+                }
+
+                inputboxes.innerHTML = "";
+                document.getElementById("inputval").value = "";
+            })
+
+            $("#search").on("click", function () {
+                h2.innerHTML = "";
+                $("#inputboxes input").removeClass("highlight");
+
+                for (let i = 1; i <= n; i++) {
+                    if (document.getElementById(`num${i}`).value === "") {
+                        h2.innerHTML = "Please Enter All input Values....";
+                        return;
+                    }
+                }
+
+                let val = parseInt(prompt("Enter Value You Want to Search"));
+                let searchid = null;
+                let flag = false;
+
+                for (let i = 1; i <= n; i++) {
+                    let ip = parseInt(document.getElementById(`num${i}`).value);
+
+                    if (ip === val) {
+                        flag = true;
+                        searchid = `#num${i}`;
+                        break;
+                    }
+                }
+
+                if (flag === true) {
+                    h2.innerHTML = `Yahh! Element Found....`;
+                } else {
+                    h2.innerHTML = `Oops! Element Not Found....`;
+                }
+
+                $(searchid).addClass("highlight");
+            })
+        })
+    </script>
+</body>
+
+</html>
