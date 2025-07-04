@@ -5,20 +5,7 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url(../images/Screenshot\ 2025-07-03\ 124634.png);
-    /* background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center; */
-    /* position: relative; */
 }
-
-/* body::after {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    background-color: rgba(27, 24, 24, 0.607);
-    z-index: -1;
-} */
 
 .outer-body {
     background-image: url(../images/white-brick-background-rkhvwet8513dcmme.jpg);
@@ -59,13 +46,17 @@ body {
     background-color: rgba(114, 111, 111, 0.458);
     border: 2px solid rgb(90, 87, 87);
     font-weight: 600;
+    width: 49px;
 }
+
+.w-100 {
+    width: 100% !important; 
+} 
 
 .form-control:focus {
     background-color: transparent;
     box-shadow: 0 0 0 .25rem rgba(64, 64, 65, 0.25);
     border-color: rgba(107, 106, 106, 0.783);
-    /* border: 2px solid rgb(90, 87, 87); */
 }
 
 .btn-dark {
@@ -88,9 +79,7 @@ body {
 }
 
 .highlight {
-    background-color: rgb(111, 71, 71);
-    /* border: 2px solid rgb(71, 47, 47); */
-    border: 2px solid rgb(57, 56, 56);
+    background-color: rgb(77, 74, 74);
     color: white;
     font-weight: 600;
 }

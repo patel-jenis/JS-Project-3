@@ -17,11 +17,11 @@
             <div class="outer-body py-md-4 py-3 px-md-5 px-4">
                 <div class="mt-4">
                     <label for="inputval" class="label-val">Enter Value For Box :</label>
-                    <input type="number" id="inputval" class="form-control mt-2">
+                    <input type="text" id="inputval" class="form-control w-100 text-start mt-2">
                     <button class="btn btn-dark mt-3" type="submit" id="submitbtn">Submit</button>
                 </div>
                 <div>
-                    <div id="inputboxes" class="mt-5"></div>
+                    <div id="inputboxes" class="mt-4 d-flex flex-wrap gap-3"></div>
                     <div class="d-flex flex-wrap gap-3 mt-4">
                         <button id="random" class="btn btn-dark">Random</button>
                         <button id="max" class="btn btn-dark">Max</button>
@@ -49,7 +49,7 @@
                 n = parseInt(document.getElementById("inputval").value);
 
                 for (let i = 1; i <= n; i++) {
-                    inputboxes.innerHTML += `<input type="number" id="num${i}" class="form-control mt-2">`;
+                    inputboxes.innerHTML += `<input type="text" id="num${i}" class="form-control text-center mt-2">`;
                 }
             })
 
